@@ -1,46 +1,99 @@
-# Getting Started with Create React App
+# Quiz Master
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Quiz Master adalah aplikasi kuis interaktif yang dibangun menggunakan React dan TypeScript. Aplikasi ini memungkinkan pengguna untuk menguji pengetahuan mereka melalui serangkaian pertanyaan pilihan ganda dengan fitur-fitur modern dan user-friendly.
 
-## Available Scripts
+## Fitur Utama
 
-In the project directory, you can run:
+### 1. Sistem Autentikasi
+- Login dan registrasi pengguna
+- Penyimpanan data pengguna menggunakan localStorage
+- Proteksi rute untuk halaman kuis
 
-### `npm start`
+### 2. Manajemen Kuis
+- Timer 5 menit untuk setiap sesi kuis
+- Tampilan satu pertanyaan per halaman
+- Navigasi otomatis ke pertanyaan berikutnya
+- Progress indicator untuk melacak posisi pertanyaan
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 3. Fitur Resume
+- Penyimpanan otomatis progress kuis
+- Resume kuis dari posisi terakhir setelah browser ditutup
+- Penyimpanan sisa waktu dan jawaban yang telah dipilih
+- Seamless state restoration
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 4. Hasil Kuis
+- Tampilan skor akhir
+- Statistik jawaban benar dan salah
+- Progress bar visual
+- Opsi untuk memulai kuis baru
 
-### `npm test`
+## Teknologi yang Digunakan
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **React**: Library UI utama
+- **TypeScript**: Untuk type safety dan developer experience yang lebih baik
+- **Zustand**: State management dengan fitur persistence
+- **React Query**: Data fetching dan caching
+- **React Router**: Routing dan navigasi
+- **Tailwind CSS**: Styling dan UI components
+- **Zod**: Validasi form dan data
+- **Vite**: Build tool dan development server
 
-### `npm run build`
+## Struktur Proyek
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+src/
+├── api/            # API calls dan service layer
+├── components/     # Reusable UI components
+├── hooks/         # Custom React hooks
+├── pages/         # Route components/pages
+├── schema/        # Validation schemas
+├── store/         # Zustand stores
+├── types/         # TypeScript type definitions
+└── assets/        # Static assets
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Fitur State Management
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Quiz Store
+- Menyimpan state kuis (pertanyaan, jawaban, skor)
+- Menggunakan Zustand dengan middleware persist
+- Automatic state restoration
 
-### `npm run eject`
+### Auth Store
+- Manajemen state autentikasi
+- Penyimpanan data user
+- Integrasi dengan localStorage
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Timer dan Resume Mechanism
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Timer diimplementasikan menggunakan custom hook `useQuizTimer` yang menyediakan:
+- Countdown timer 5 menit
+- Automatic state saving sebelum browser ditutup
+- Precise time tracking
+- Integration dengan quiz state
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Getting Started
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. Clone repository
+```bash
+git clone <repository-url>
+cd react-quiz
+```
 
-## Learn More
+2. Install dependencies
+```bash
+npm install
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Jalankan development server
+```bash
+npm run dev
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Environment Variables
+
+Buat file `.env` di root project dan tambahkan:
+```
+VITE_API_URL=https://opentdb.com/api.php
+```
+
